@@ -5,7 +5,7 @@ This is an edge system for the plugin PlotSquared on Nukkit. With this plugin yo
 # Commands
 Command | SubCommand | Description | Permission 
 --------- | ------- | ------------------- | ------- 
-/p | rand | Vote for the server | plots.rand
+/p | rand | Change your plot border | plots.rand
 
 ---------------------------
 | Discord |
