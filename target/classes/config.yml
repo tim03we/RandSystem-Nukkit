@@ -1,0 +1,20 @@
+---
+# The prefix that appears before all messages
+prefix: "§eRandSystem §7> "
+
+# Here you can edit the UI
+form:
+  title: "§e§lPlot Borders"
+
+# Here you can change the general messages
+messages:
+  no-perms: "You do not have the necessary rights for this border."
+  not-the-owner: "You are not the owner of this plot."
+  not-on-the-plot: "You're not in your plot."
+  success: "Your plot border has been successfully modified."
+
+# All borders are listed here.
+# Name:ID:DAMAGE:PERMISSION
+rands:
+  - "Stone:1:0:none"
+...
