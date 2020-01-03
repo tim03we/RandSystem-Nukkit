@@ -21,25 +21,27 @@ public class PlayerFormResponded implements Listener {
             }
             FormWindowSimple gui = (FormWindowSimple) event.getWindow();
             String responseName = gui.getResponse().getClickedButton().getText();
-            Plot plot = Plot.getPlot(new Location(player.getLevel().getName(), player.getFloorX(), player.getFloorY(), player.getFloorZ()));
-            if (plot == null) {
-                player.sendMessage(RandSystem.prefix + RandSystem.getInstance().getConfig().getString("messages.not-on-the-plot"));
-                return;
-            }
-            if (!plot.isOwner(NukkitUtil.getPlayer(player).getUUID())) {
-                player.sendMessage(RandSystem.prefix + RandSystem.getInstance().getConfig().getString("messages.not-the-owner"));
-                return;
-            }
-            for (String list : RandSystem.rands) {
-                String[] ex = list.split(":");
-                if(ex[0].equals(responseName)) {
-                    if(!ex[3].equals("none")) {
-                        if (!player.hasPermission(ex[3])) {
-                            player.sendMessage(RandSystem.prefix + RandSystem.getInstance().getConfig().getString("messages.no-perms"));
-                            return;
+            if(RandSystem.getInstance().getConfig().getString("form.title").equals(gui.getTitle())) {
+                Plot plot = Plot.getPlot(new Location(player.getLevel().getName(), player.getFloorX(), player.getFloorY(), player.getFloorZ()));
+                if (plot == null) {
+                    player.sendMessage(RandSystem.prefix + RandSystem.getInstance().getConfig().getString("messages.not-on-the-plot"));
+                    return;
+                }
+                if (!plot.isOwner(NukkitUtil.getPlayer(player).getUUID())) {
+                    player.sendMessage(RandSystem.prefix + RandSystem.getInstance().getConfig().getString("messages.not-the-owner"));
+                    return;
+                }
+                for (String list : RandSystem.rands) {
+                    String[] ex = list.split(":");
+                    if(ex[0].equals(responseName)) {
+                        if(!ex[3].equals("none")) {
+                            if (!player.hasPermission(ex[3])) {
+                                player.sendMessage(RandSystem.prefix + RandSystem.getInstance().getConfig().getString("messages.no-perms"));
+                                return;
+                            }
                         }
+                        RandSystem.setRand(player, ex[1] + ":" + ex[2], plot);
                     }
-                    RandSystem.setRand(player, ex[1] + ":" + ex[2], plot);
                 }
             }
         }
